@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+  <h2 class="h4 m-0" id="dashboard-title">Your Projects</h2>
+  <a href="{{ url_for('project_new') }}" class="btn btn-primary" id="btn-new-project">New Project</a>
+</div>
+
+<form class="row g-2 mb-4" id="form-project-filters" method="GET">
+  <div class="col-md-6">
+    <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="Search projects..." id="filter-search">
+  </div>
+  <div class="col-md-4">
+    <select class="form-select" name="status" id="filter-status">
+      <option value="">All statuses</option>
+      <option value="active" {{ 'selected' if status=='active' }}>Active</option>
+      <option value="paused" {{ 'selected' if status=='paused' }}>Paused</option>
+      <option value="archived" {{ 'selected' if status=='archived' }}>Archived</option>
+    </select>
+  </div>
+  <div class="col-md-2 d-grid">
+    <button class="btn btn-outline-light" id="btn-filter-apply" type="submit">Apply</button>
+  </div>
+</form>
+
+<div class="row g-3" id="project-list">
+  {% for p in projects %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card bg-black border-secondary h-100 shadow-sm" id="project-card-{{ p.id }}">
+      <div class="card-body d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-start">
+          <h3 class="h5" id="project-name-{{ p.id }}">{{ p.name }}</h3>
+          <span class="badge text-bg-secondary" id="project-status-{{ p.id }}">{{ p.status }}</span>
+        </div>
+        <p class="text-secondary small mt-2" id="project-desc-{{ p.id }}">{{ p.description or '—' }}</p>
+        <div class="mt-auto d-flex gap-2">
+          <a href="{{ url_for('project_detail', project_id=p.id) }}" class="btn btn-sm btn-primary" id="btn-open-{{ p.id }}">Open</a>
+          <a href="{{ url_for('project_edit', project_id=p.id) }}" class="btn btn-sm btn-outline-light" id="btn-edit-{{ p.id }}">Edit</a>
+          <form action="{{ url_for('project_delete', project_id=p.id) }}" method="POST" class="ms-auto" onsubmit="return confirm('Delete project?');">
+            <button class="btn btn-sm btn-outline-danger" id="btn-delete-{{ p.id }}" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <div class="alert alert-secondary" id="empty-state">No projects found. Create one!</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

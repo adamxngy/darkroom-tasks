@@ -1,0 +1,6 @@
+/* Dark theme tweaks */
+:root { --accent: #6ea8fe; }
+a { text-decoration: none; }
+.card { border-radius: 1rem; }
+.btn, .form-control, .form-select { border-radius: .75rem; }
+#project-list .card:hover { transform: translateY(-2px); transition: transform .1s ease-in-out; }

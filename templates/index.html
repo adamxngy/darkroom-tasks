@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="text-center py-5">
+  <h1 class="display-5 fw-bold" id="hero-title">Welcome to DarkRoom</h1>
+  <p class="lead text-secondary" id="hero-subtitle">A sleek, dark-themed Flask app crafted to be great for UI, API, and end‑to‑end automation testing.</p>
+  <div class="d-flex gap-2 justify-content-center mt-3">
+    <a id="cta-signin" class="btn btn-primary btn-lg" href="{{ url_for('login') }}">Sign In</a>
+    <a id="cta-register" class="btn btn-outline-light btn-lg" href="{{ url_for('register') }}">Create Account</a>
+    <a id="cta-health" class="btn btn-outline-secondary btn-lg" href="{{ url_for('api_health') }}">Health API</a>
+  </div>
+</section>
+{% endblock %}

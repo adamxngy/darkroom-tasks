@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card bg-black border-secondary shadow-sm">
+      <div class="card-body">
+        <h2 class="h4 mb-3" id="project-form-title">{{ 'New Project' if mode=='new' else 'Edit Project' }}</h2>
+        <form method="POST" id="form-project">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            <label for="project-name" class="form-label">Name</label>
+            {{ form.name(class="form-control", id="project-name") }}
+          </div>
+          <div class="mb-3">
+            <label for="project-description" class="form-label">Description</label>
+            {{ form.description(class="form-control", id="project-description", rows="3") }}
+          </div>
+          <div class="mb-3">
+            <label for="project-status" class="form-label">Status</label>
+            {{ form.status(class="form-select", id="project-status") }}
+          </div>
+          {{ form.submit(class="btn btn-primary", id="btn-project-save") }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card bg-black border-secondary shadow-sm">
+      <div class="card-body">
+        <h2 class="h4 mb-3" id="login-title">Sign in</h2>
+        <form method="POST" novalidate id="form-login">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            <label for="login-email" class="form-label">Email</label>
+            {{ form.email(class="form-control", id="login-email") }}
+          </div>
+          <div class="mb-3">
+            <label for="login-password" class="form-label">Password</label>
+            {{ form.password(class="form-control", id="login-password") }}
+          </div>
+          <div class="form-check mb-3">
+            {{ form.remember(class="form-check-input", id="login-remember") }}
+            <label class="form-check-label" for="login-remember">Remember me</label>
+          </div>
+          {{ form.submit(class="btn btn-primary w-100", id="btn-login-submit") }}
+          <div class="text-secondary small mt-3">
+            <span id="login-hint">Default user: <code>testuser@example.com</code> / <code>Password123!</code></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
